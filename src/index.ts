@@ -1,12 +1,7 @@
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
-import {
-  buildSchema,
-  formatArgumentValidationError,
-  Resolver,
-  Query
-} from "type-graphql";
+import { buildSchema, formatArgumentValidationError } from "type-graphql";
 import { createConnection } from "typeorm";
 import cors from "cors";
 import chalk from "chalk";
@@ -14,21 +9,10 @@ import chalk from "chalk";
 const startServer = async () => {
   const connection = await createConnection();
 
-  await connection.synchronize();
+  await connection.synchronize(); 
 
-  @Resolver()
-  class HelloResolver {
-    @Query(() => String)
-    async helloWorld() {
-      return "Hello world";
-    }
-  }
-
-  //   const schema = await buildSchema({
-  //     resolvers: [__dirname + "/modules/**/*.ts"]
-  //   });
   const schema = await buildSchema({
-    resolvers: [HelloResolver]
+    resolvers: [__dirname + "/modules/**/*.ts"]
   });
 
   const server = new ApolloServer({

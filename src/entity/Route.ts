@@ -15,9 +15,6 @@ export class Route extends BaseEntity {
   @PrimaryColumn({ type: "int", unique: true })
   RouteId: number;
 
-  //@OneToMany(_ => RouteShipOrder, routeshiporder => routeshiporder.RouteId)
-  //routeshiporders: RouteShipOrder[];
-
   @Field()
   @Column({ type: "varchar", length: 100 })
   DocFullNo: string;
@@ -55,11 +52,11 @@ export class Route extends BaseEntity {
   DriverPhone: string;
 
   @Field()
-  @Column({ type: "varchar", length: 30 })
+  @Column({ type: "varchar", length: 50 })
   VehicleNumber: string;
 
   @Field()
-  @Column({ type: "varchar", length: 30 })
+  @Column({ type: "varchar", length: 50 })
   TrailerNumber: string;
 
   @Field()
@@ -73,6 +70,9 @@ export class Route extends BaseEntity {
   @Field()
   @Column({ type: "varchar" })
   BusinessUnitName: string;
+
+  // @ManyToOne(type => RefUser, refuser => refuser.OwnerId);
+  // refuser: RefUser[];
 
   @Field()
   @Column({ type: "varchar", length: 100 })
