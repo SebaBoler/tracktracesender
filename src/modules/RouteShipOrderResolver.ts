@@ -11,8 +11,13 @@ export class RouteShipOrderResolver {
     return await this.routeshiporderRepository.find();
   }
 
-  @Query(() => RouteShipOrder, { nullable: true, name: "RouteShipOrderbyId" })
-  async routeById(@Arg("routeShipOrderId") routeShipOrderId: number) {
+  @Query(() => RouteShipOrder, {
+    nullable: true,
+    name: "RouteShipOrderOneById"
+  })
+  async routeshiporderOneById(
+    @Arg("routeShipOrderId") routeShipOrderId: number
+  ) {
     return await this.routeshiporderRepository.findOne(routeShipOrderId);
   }
 }

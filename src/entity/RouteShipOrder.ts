@@ -10,6 +10,10 @@ export class RouteShipOrder extends BaseEntity {
 
   @Field()
   @Column({ type: "int" })
+  ShipOrderId: number;
+
+  @Field()
+  @Column({ type: "int" })
   RouteId: number;
 
   //@ManyToOne(type => Route, route => route.routeshiporders)
@@ -77,4 +81,8 @@ export class RouteShipOrder extends BaseEntity {
   @Field()
   @Column({ type: "time" })
   DeliveryTimeTo: Date;
+
+  @Field()
+  @Column({ type: "varchar", length: 100 })
+  OwnerId: string;
 }
