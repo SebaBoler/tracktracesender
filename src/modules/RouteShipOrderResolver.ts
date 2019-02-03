@@ -1,4 +1,4 @@
-import { Resolver, Query } from "type-graphql";
+import { Resolver, Query, Arg } from "type-graphql";
 import { RouteShipOrder } from "../entity/RouteShipOrder";
 import { getRepository } from "typeorm";
 
@@ -6,13 +6,13 @@ import { getRepository } from "typeorm";
 export class RouteShipOrderResolver {
   private routeshiporderRepository = getRepository(RouteShipOrder);
 
-  @Query(() => [RouteShipOrder], { name: "RouteShipOrderAll" })
+  @Query(() => [RouteShipOrder], { name: "RouteShipOrderGetAll" })
   async routes(): Promise<RouteShipOrder[]> {
     return await this.routeshiporderRepository.find();
   }
 
-  @Query(() => [RouteShipOrder], { name: "RouteShipOrderbyId" })
-  async routeById() {
-    return await this.routeshiporderRepository.find();
+  @Query(() => RouteShipOrder, { nullable: true, name: "RouteShipOrderbyId" })
+  async routeById(@Arg("routeShipOrderId") routeShipOrderId: number) {
+    return await this.routeshiporderRepository.findOne(routeShipOrderId);
   }
 }
